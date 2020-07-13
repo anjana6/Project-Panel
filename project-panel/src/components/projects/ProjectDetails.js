@@ -1,20 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react';
+import {useSelector} from 'react-redux';
+import {useFirestoreConnect} from 'react-redux-firebase';
 
-const ProjectDetails = () => {
+const ProjectDetails = (props) => {
+    const {id} = props.match.params;
+    useFirestoreConnect([{collection:'projects'}]);
+
+    const project = useSelector(state => {
+        const projects = state.firestore.data.projects
+        return (projects? projects[id]: null);
+        
+    })
+
+   
     return (
-        <div className="container section project-details">
+        <>
+        {project ?
+            <>
+            <div className="container section project-details">
             <div className="card 2-depth-0">
                 <div className="card-content">
-                    <span className="card-title">Project Title</span>
-                    <p>lorem anjaa shakhti but ia ma no mogile and webdevelop menat </p>
+                    <span className="card-title">{project.title}</span>
+                        <p>{project.content}</p>
                 </div>
                 <div className="card-action gret lighten-4 grey-text">
-                    <div>Posted by the Anjana</div>
+                    <div>{project.fname}</div>
                     <div>2nd July , 2am</div>
                 </div>
             </div>
-        </div>
+            </div>
+            </> :
+            <>
+            <div className="container center">
+                <h1>Loading ..........</h1>
+            </div>
+            </>
+
+        }
+        </>
     )
 }
 
-export default ProjectDetails
+export default ProjectDetails;

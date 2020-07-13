@@ -1,10 +1,17 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import Notifications from './Notification';
 import ProjectList from '../projects/ProjectList';
 import {useSelector} from 'react-redux';
+// import {firestoreConnect} from 'react-redux-firebase';
+import {useFirestoreConnect} from 'react-redux-firebase';
+import {compose} from 'redux';
 
 const Dashboard = () => {
-    const projects = useSelector(state => state.project.projects);
+    //const projects = useSelector(state => state.project.projects);
+    useFirestoreConnect([{collection:'projects'}])
+    const projects = useSelector(state => state.firestore.ordered.projects);
+    
     
     return (
         <div className="dashboard container">
@@ -20,4 +27,18 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+// const mapStateToProps = state => {
+//     console.log(state);
+//     return{
+//         projects: state.fires.ordered.projects
+//     }
+// }
+
+export default Dashboard;
+
+// export default compose(
+//     connect(mapStateToProps),
+//     firestoreConnect([
+//         {collection: 'projects'}
+//     ])
+// )(Dashboard);

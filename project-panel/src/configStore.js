@@ -1,17 +1,24 @@
 import {createStore,applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk'
 import rootReducer from './store/reducer';
-import {reduxFirestore,getFirestore} from 'redux-firestore';
-import {reactReduxFirebase,getFirebase} from 'react-redux-firebase';
+import {reduxFirestore,getFirestore,createFirestoreInstance} from 'redux-firestore';
+import {getFirebase} from 'react-redux-firebase';
 import fbConfig from './config/fbConfig';
+import firebase from 'firebase/app';
 
 // const thunk = [thunk]
-const configStore = createStore(rootReducer,
+export const configStore = createStore(
+    rootReducer,
     compose(
-    applyMiddleware(thunk.withExtraArgument({getFirebase,getFirestore})),
-    reduxFirestore(fbConfig),
-    reactReduxFirebase(fbConfig),
+        applyMiddleware(thunk.withExtraArgument({getFirebase,getFirestore})),
+        reduxFirestore(firebase,fbConfig),
 )
     );
 
-export default configStore;
+export const rrfPorps = {
+    firebase,
+    config: fbConfig,
+    dispatch: configStore.dispatch,
+    createFirestoreInstance
+}
+

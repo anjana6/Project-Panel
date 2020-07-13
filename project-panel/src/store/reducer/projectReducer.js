@@ -8,7 +8,10 @@ const initialState = {
 const projectReducer = (state=initialState,action) =>{
     switch(action.type){
         case 'CREATE_PEOJECT':
-            return{...state,projects}
+            return state;
+        case 'CREATE_PROJECT_ERROR':
+            console.log('create erro',action.payload);
+            return state;
         default:
             return state;
     }

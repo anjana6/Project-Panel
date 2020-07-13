@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import ProjectItem from './ProjectItem';
 
 const ProjectList = ({projects}) => {
@@ -7,7 +8,10 @@ const ProjectList = ({projects}) => {
            
             {projects && projects.map(project =>{
                 return(
-                    <ProjectItem project={project} key={project.id}/>
+                    <Link to={`/project/${project.id}`}  key={project.id}>
+                        <ProjectItem project={project}/>
+                    </Link>
+                    
                 )
             })}
             
