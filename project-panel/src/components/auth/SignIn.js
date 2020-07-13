@@ -1,11 +1,16 @@
-import React,{useState} from 'react'
+import React,{useState} from 'react';
+import {useDispatch,useSelector} from 'react-redux';
+import {signIn} from '../../store/action/authAction';
 
 const SignIn = () => {
     const [state, setState] = useState({email:'',password:''});
+    const dispatch = useDispatch();
+    const authError = useSelector(state => state.auth.error)
 
     const onSubmit = (e) => {
         e.preventDefault()
         console.log(state);
+        dispatch(signIn(state))
     }
 
     const onChange = (e) => {
@@ -25,6 +30,9 @@ const SignIn = () => {
                 </div>
                 <div className="input-field">
                     <button className="btn pink lighten-1 z-depth-0">Login</button>
+                    <div className="red-text center">
+                        {authError? <p>{authError}</p>: null}
+                    </div>
                 </div>
             </form>
         </div>
