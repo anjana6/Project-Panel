@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
 import {useFirestoreConnect} from 'react-redux-firebase';
+import moment from 'moment';
 
 const ProjectDetails = (props) => {
     const {id} = props.match.params;
@@ -20,12 +21,12 @@ const ProjectDetails = (props) => {
             <div className="container section project-details">
             <div className="card 2-depth-0">
                 <div className="card-content">
-                    <span className="card-title">{project.title}</span>
-                        <p>{project.content}</p>
+                    <span className="card-title">{project?.title}</span>
+                        <p>{project?.content}</p>
                 </div>
                 <div className="card-action gret lighten-4 grey-text">
-                    <div>{project.fname}</div>
-                    <div>2nd July , 2am</div>
+                    <div>post by {project?.firstName}</div>
+                    <div>{moment(project?.createAt?.toDate()).calendar()}</div>
                 </div>
             </div>
             </div>

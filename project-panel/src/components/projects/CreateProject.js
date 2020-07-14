@@ -1,18 +1,21 @@
 import React,{useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {createProject} from '../../store/action/projectAction';
+import { useHistory } from 'react-router-dom';
 
 const CreateProject = () => {
     const dispatch = useDispatch()
+    const history = useHistory();
     const [state, setState] = useState({title:'',content:''});
 
     const onSubmit = (e) => {
         e.preventDefault()
         dispatch(createProject(state));
+        history.push('/')
     }
 
     const onChange = (e) => {
-        setState({...state,[e.target.name]: e.target.value})
+        setState({...state,[e.target.name]: e.target.value});
     }
     return (
         <div className="container">

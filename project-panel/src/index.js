@@ -4,11 +4,13 @@ import {Provider} from 'react-redux';
 import {ReactReduxFirebaseProvider} from 'react-redux-firebase';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {configStore,rrfPorps} from './configStore';
+import {conStore,rrfPorps} from './conStore';
+
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={configStore}>
+    <Provider store={conStore}>
       <ReactReduxFirebaseProvider {...rrfPorps}>
         <App />
       </ReactReduxFirebaseProvider>

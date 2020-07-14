@@ -12,13 +12,20 @@ export const configStore = createStore(
     compose(
         applyMiddleware(thunk.withExtraArgument({getFirebase,getFirestore})),
         reduxFirestore(firebase,fbConfig),
+        //reactReduxFirebase()
 )
     );
+
+// const rrfConfig = {
+//     userProfile: 'users',
+//     userFirestoreForProfile:true
+// }
 
 export const rrfPorps = {
     firebase,
     config: fbConfig,
     dispatch: configStore.dispatch,
-    createFirestoreInstance
+    createFirestoreInstance,
+
 }
 

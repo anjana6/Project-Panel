@@ -10,9 +10,20 @@ import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import CreateProject from './components/projects/CreateProject';
 
+import {useSelector} from 'react-redux';
+import {isLoaded} from 'react-redux-firebase';
+
+const AuthIsLoaded = ({children}) => {
+  const auth = useSelector(state => state.firebase.auth);
+  if(!isLoaded(auth)) return <div>Loading...</div>
+  return children;
+}
+
+
 function App() {
   return (
     <Router>
+      <AuthIsLoaded>
       <div className="App">
         <Navbar/>
         <Switch>
@@ -23,6 +34,7 @@ function App() {
           <Route path='/create' component={CreateProject}/>
         </Switch>
       </div>
+      </AuthIsLoaded>
     </Router>
     
   );

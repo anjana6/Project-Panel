@@ -1,16 +1,24 @@
-import React,{useState} from 'react'
+import React,{useState} from 'react';
+import {useDispatch,useSelector} from 'react-redux';
+import {signUp} from '../../store/action/authAction';
+import { Redirect } from 'react-router-dom';
 
 const SignIn = () => {
     const [state, setState] = useState({Fname:'',Lname:'',email:'',password:''});
+    const dispatch = useDispatch();
+    const authError = useSelector(state => state.auth.error);
+    const auth = useSelector(state => state.firebase.auth)
 
     const onSubmit = (e) => {
         e.preventDefault()
-        console.log(state);
+       dispatch(signUp(state));
     }
 
     const onChange = (e) => {
         setState({...state,[e.target.name]: e.target.value})
     }
+
+    if(auth?.uid) return <Redirect to='/'/>
     return (
         <div className="container">
             <form onSubmit={onSubmit} className="white">
@@ -33,6 +41,9 @@ const SignIn = () => {
                 </div>
                 <div className="input-field">
                     <button className="btn pink lighten-1 z-depth-0">SingUp</button>
+                    <div className="red-text center">
+                        {authError? <p>{authError}</p>: null}
+                    </div>
                 </div>
             </form>
         </div>
