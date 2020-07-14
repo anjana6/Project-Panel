@@ -7,9 +7,7 @@ import SignOutLink from './SignOutLink';
 
 const Navbar = () => {
     const auth = useSelector(state => state.firebase.auth);
-    const profile = useSelector(state => state.firebase.profile);
-    //console.log(profile);
-   
+    const profile = useSelector(state => state.firebase.profile);   
 
     const checkAuth = auth.isEmpty ? <SignOutLink/> : <SignInLink profile={profile} />;
     
@@ -23,4 +21,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default Navbar;

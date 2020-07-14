@@ -10,4 +10,4 @@ const SignInLink = () => {
     )
 }
 
-export default SignInLink
+export default SignInLink;

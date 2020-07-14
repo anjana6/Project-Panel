@@ -1,5 +1,4 @@
 export const signIn = (data) => {
-    console.log(data);
     return (dispatch,getState,{getFirebase,getFireStore}) => {
         const firebase = getFirebase();
             firebase.auth().signInWithEmailAndPassword(
@@ -19,7 +18,6 @@ export const signIn = (data) => {
 }
 
 export const signOut = () => {
-    console.log('hai');
     return (dispatch,getState,{getFirebase})=>{
         const firebase = getFirebase();
         firebase.auth().signOut().then(() =>{
@@ -31,7 +29,6 @@ export const signOut = () => {
 }
 
 export const signUp = (newUser) => {
-    console.log(newUser);
     return (dispatch,getState,{getFirebase,getFirestore}) => {
         const firebase = getFirebase();
         const firestore = getFirestore();
@@ -43,7 +40,6 @@ export const signUp = (newUser) => {
             return firestore.collection('users').doc(res.user.uid ).set({
                 firstName:newUser.Fname,
                 lastName: newUser.Lname,
-
             })
         }).then(()=>{
             dispatch({

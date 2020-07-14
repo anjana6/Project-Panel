@@ -16,11 +16,8 @@ const authReducer = (state=initialState,action) =>{
         case 'SIGNUP_SUCCESS':
             console.log('sucess');
             return {...state,error:null};
-        
         default:
             return state;
     }
 }
-
-
 export default authReducer;

@@ -1,8 +1,5 @@
 const initialState = {
-    projects: [
-        {id:'1',title:'anjana shakthi',content:'react-project'},
-        {id:'2',title:'kavee shakthi',content:'nodejs project'}
-    ]
+    error:null
 } 
 
 const projectReducer = (state=initialState,action) =>{
@@ -10,11 +7,10 @@ const projectReducer = (state=initialState,action) =>{
         case 'CREATE_PEOJECT':
             return state;
         case 'CREATE_PROJECT_ERROR':
-            console.log('create erro',action.payload);
-            return state;
+            return {...state,error:action.payload}
         default:
             return state;
     }
 }
 
-export default projectReducer
+export default projectReducer;

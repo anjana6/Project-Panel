@@ -1,7 +1,8 @@
 import React,{useState} from 'react';
-import {useDispatch,useSelector} from 'react-redux';
-import {signUp} from '../../store/action/authAction';
 import { Redirect } from 'react-router-dom';
+import {useDispatch,useSelector} from 'react-redux';
+
+import {signUp} from '../../store/action/authAction';
 
 const SignIn = () => {
     const [state, setState] = useState({Fname:'',Lname:'',email:'',password:''});
@@ -19,6 +20,7 @@ const SignIn = () => {
     }
 
     if(auth?.uid) return <Redirect to='/'/>
+
     return (
         <div className="container">
             <form onSubmit={onSubmit} className="white">
@@ -36,7 +38,7 @@ const SignIn = () => {
                     <input type="email" id="email" onChange={onChange} name="email"/>
                 </div>
                 <div className="input-field">
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="password">Password</label>
                     <input type="password" id="password" onChange={onChange} name="password"/>
                 </div>
                 <div className="input-field">
@@ -50,4 +52,4 @@ const SignIn = () => {
     )
 }
 
-export default SignIn
+export default SignIn;
