@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import {useFirestoreConnect} from 'react-redux-firebase';
 
-import Notifications from './Notification';
+import UserList from './UserList';
 import ProjectList from '../projects/ProjectList';
 
 const Dashboard = () => {
@@ -19,7 +19,7 @@ const Dashboard = () => {
                     <ProjectList projects={projects}/>
                 </div>
                 <div className="col s12 m5 offset-m1">
-                    <Notifications/>
+                    <UserList/>
                 </div>
             </div>
         </div>
